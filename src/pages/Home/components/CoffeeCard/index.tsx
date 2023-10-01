@@ -1,5 +1,6 @@
 import { ShoppingCart } from 'phosphor-react'
 import { useState } from 'react'
+import { toast, Toaster } from 'react-hot-toast'
 import { QuantityInput } from '../../../../components/QuantityInput'
 import { RegularText, TitleText } from '../../../../components/Typography'
 import { useCart } from '../../../../hooks/useCart'
@@ -45,6 +46,7 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
       quantity,
     }
 
+    toast.success('Adicionado ao carrinho!')
     addCoffeeToCart(coffeeToAdd)
   }
 
@@ -52,6 +54,16 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
 
   return (
     <CoffeeCardContainer>
+      <Toaster
+        toastOptions={{
+          style: {
+            background: '#4B2995',
+            color: '#fff',
+            boxShadow: '0 0 0 0',
+            borderRadius: '6px',
+          },
+        }}
+      />
       <img src={`/coffees/${coffee.photo}`} alt="" />
       <Tags>
         {coffee.tags.map((tag) => (
